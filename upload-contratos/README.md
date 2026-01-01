@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Desafio Cadeconsig - Julia
 
-## Getting Started
+Projeto desenvolvido como parte do processo seletivo para Desenvolvedor Full Stack na Cadeconsig.
 
-First, run the development server:
+## 📋 Sobre o Projeto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Sistema de gestão de contratos com funcionalidades de:
+- Autenticação de usuários (JWT)
+- Upload de contratos via CSV
+- Listagem de contratos com filtros e paginação
+
+## 🚀 Tecnologias Utilizadas
+
+- **Next.js 15** - Framework React com App Router
+- **TypeScript** - Tipagem estática
+- **Tailwind CSS** - Estilização
+- **Shadcn UI** - Componentes de interface
+- **React Hook Form + Zod** - Formulários e validação
+- **TanStack Query** - Gerenciamento de estado e cache
+- **Nuqs** - Gerenciamento de query params na URL
+
+## 📁 Estrutura do Projeto
+```
+desafio-cade-consig-julia/
+├── upload-contratos/     # Projeto Next.js
+│   ├── app/
+│   │   ├── (auth)/       # Páginas de autenticação
+│   │   └── (dashboard)/  # Páginas protegidas
+│   ├── components/       # Componentes reutilizáveis
+│   ├── hooks/            # Custom hooks
+│   ├── lib/              # Utilitários e API
+│   ├── providers/        # Context providers
+│   └── types/            # Tipos TypeScript
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙️ Como Executar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Pré-requisitos
+- Node.js 18+
+- Backend do desafio rodando em `http://localhost:3000`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Instalação
+```bash
+# Clone o repositório
+git clone https://github.com/juziss/desafio-cade-consig-julia.git
 
-## Learn More
+# Entre na pasta do projeto
+cd desafio-cade-consig-julia/upload-contratos
 
-To learn more about Next.js, take a look at the following resources:
+# Instale as dependências
+npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Execute o projeto
+npm run dev -- -p 3001
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Acesse `http://localhost:3001` no navegador.
 
-## Deploy on Vercel
+### Credenciais de teste
+```
+Usuário: admin
+Senha: admin123
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ✨ Funcionalidades
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Tela de Login
+- Autenticação via API
+- Validação de formulário com Zod
+- Feedback visual de erros
+
+### Tela de Upload
+- Upload de arquivos CSV (drag and drop)
+- Validação de formato
+- Feedback de sucesso/erro com quantidade de registros
+
+### Tela de Contratos
+- Listagem com paginação
+- Filtros por nome, email, plano e status
+- Filtros persistidos na URL
+- Estados de loading, erro e lista vazia
+
+## 👩‍💻 Autora
+
+**Julia** - [GitHub](https://github.com/juziss)

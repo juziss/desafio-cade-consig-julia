@@ -10,6 +10,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Upload Contratos - Cadeconsig',
   description: 'Sistema de gestão de contratos',
+  icons: {
+    icon: '/logo.png',
+  },
 };
 
 export default function RootLayout({

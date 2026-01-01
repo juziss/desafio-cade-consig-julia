@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -31,12 +32,20 @@ export default function DashboardLayout({
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <header className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-8">
-              <h1 className="text-xl font-bold text-gray-900">Cadeconsig</h1>
+              <div className="flex items-center gap-2">
+                <Image 
+                  src="/logo-header.png" 
+                  alt="Cadeconsig" 
+                  width={130} 
+                  height={100}
+                  className="rounded"
+                />
+              </div>
               <nav className="flex gap-4">
                 {navItems.map((item) => (
                   <Link
@@ -44,8 +53,8 @@ export default function DashboardLayout({
                     href={item.href}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                       pathname === item.href
-                        ? 'bg-gray-100 text-gray-900'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                        ? 'bg-primary/10 text-primary'
+                        : 'text-gray-600 hover:text-primary hover:bg-gray-50'
                     }`}
                   >
                     {item.label}
@@ -53,7 +62,10 @@ export default function DashboardLayout({
                 ))}
               </nav>
             </div>
-            <Button variant="outline" onClick={handleLogout}>
+            <Button 
+              variant="outline" 
+              onClick={handleLogout}
+            >
               Sair
             </Button>
           </div>

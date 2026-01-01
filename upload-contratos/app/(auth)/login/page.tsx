@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -57,6 +58,15 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
+          <div className="flex justify-center mb-4">
+            <Image
+              src="/logo-header.png"
+              alt="Cadeconsig"
+              width={150}
+              height={100}
+              className="rounded"
+            />
+          </div>
           <CardTitle className="text-2xl">Bem-vindo</CardTitle>
           <CardDescription>
             Faça login para acessar o sistema

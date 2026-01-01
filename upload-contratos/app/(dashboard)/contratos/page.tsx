@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useQueryState, parseAsInteger, parseAsString } from 'nuqs';
 import { useContratos } from '@/hooks/use-contratos';
 import {
@@ -30,6 +31,8 @@ import { Badge } from '@/components/ui/badge';
 import { TIPO_PLANO_OPTIONS, STATUS_OPTIONS } from '@/types';
 
 export default function ContratosPage() {
+  const router = useRouter();
+
   // Estado dos filtros na URL usando nuqs
   const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1));
   const [limit] = useQueryState('limit', parseAsInteger.withDefault(20));
@@ -65,6 +68,8 @@ export default function ContratosPage() {
       currency: 'BRL',
     }).format(Number(value));
   }
+
+  const hasFilters = nomeCliente || emailCliente || tipoPlano || status;
 
   return (
     <div className="space-y-6">
@@ -145,16 +150,36 @@ export default function ContratosPage() {
         </CardHeader>
         <CardContent>
           {isLoading ? (
-            <div className="text-center py-8 text-gray-500">
-              Carregando contratos...
+            <div className="text-center py-16">
+              <div className="text-4xl mb-4 animate-pulse">⏳</div>
+              <p className="text-gray-500">Carregando contratos...</p>
             </div>
           ) : isError ? (
-            <div className="text-center py-8 text-red-500">
-              Erro ao carregar contratos: {(error as Error).message}
+            <div className="text-center py-16">
+              <div className="text-4xl mb-4">❌</div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                Erro ao carregar contratos
+              </h3>
+              <p className="text-gray-500">
+                {(error as Error).message || 'Tente novamente mais tarde.'}
+              </p>
             </div>
           ) : data?.items.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
-              Nenhum contrato encontrado
+            <div className="text-center py-16">
+              <div className="text-6xl mb-4">📋</div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                Nenhum contrato encontrado
+              </h3>
+              <p className="text-gray-500 mb-4">
+                {hasFilters
+                  ? 'Tente ajustar os filtros para encontrar o que procura.'
+                  : 'Comece fazendo upload de um arquivo CSV.'}
+              </p>
+              {!hasFilters && (
+                <Button onClick={() => router.push('/upload')}>
+                  Fazer Upload
+                </Button>
+              )}
             </div>
           ) : (
             <>
